@@ -1,0 +1,17 @@
+.home__content__box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #000000;
+}
+
+.content__title > h2 {
+  color: blue;
+}
+
+.content__content {
+  text-align: center;
+  width: 80%;
+  height: 80%;
+  font-size: 27px;
+}
