@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 const MainContent = ({ data }) => {
   const { shloka } = useParams();
+  const { chapters } = useParams();
   const [showTranslate, setShowTranslate] = useState("none");
   const [translate, setTranslate] = useState("Transliterate");
   const changeText = () => {
@@ -24,7 +25,10 @@ const MainContent = ({ data }) => {
         <div className="content__content">
           <p>
             {data.map((card) => {
-              if (card.verse_number === parseInt(shloka)) {
+              if (
+                card.shloka === parseInt(shloka) &&
+                card.chapter === parseInt(chapters)
+              ) {
                 return <p>{card.text}</p>;
               }
             })}
@@ -44,8 +48,11 @@ const MainContent = ({ data }) => {
         <div className="content__content">
           <p>
             {data.map((card) => {
-              if (card.verse_number === parseInt(shloka)) {
-                return <p>{card.transliteration}</p>;
+              if (
+                card.shloka === parseInt(shloka) &&
+                card.chapter === parseInt(chapters)
+              ) {
+                return <p>{card.translate}</p>;
               }
             })}
           </p>

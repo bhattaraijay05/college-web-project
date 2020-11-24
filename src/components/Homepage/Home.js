@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 import MainContent from "./MainContent";
 import "./home.css";
-import Paginations from "./Paginations";
+import { db } from "../../Firebase/Firebase";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const [data, setData] = useState([]);
   const classes = useStyles();
-  const [chapter, setChapter] = useState("");
-  const [shloka, setShloka] = useState("");
+  const [chapter, setChapter] = useState(1);
+  const [shloka, setShloka] = useState(1);
 
   const changeChapter = (event) => {
     setChapter(event.target.value);
@@ -36,14 +36,24 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const fetchData = fetch("/data.json")
-      .then((res) => res.json())
-      .then((result) => setData(result.verses))
-      .catch((e) => console.log(e));
-    return () => {
-      fetchData();
-    };
+    db.collection("books")
+      .orderBy("chapter", "asc")
+      .onSnapshot((snapshot) => {
+        setData(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            chapter: doc.data().chapter,
+            shloka: doc.data().shloka,
+            text: doc.data().text,
+            translate: doc.data().translate,
+          }))
+        );
+      });
   }, []);
+  var rows = [];
+  for (var i = 1; i < 10; i++) {
+    rows.push(i);
+  }
   return (
     <div className="home">
       <div className="home__title">
@@ -64,14 +74,13 @@ const Home = () => {
                 onChange={changeChapter}
               >
                 {data.map((verse) => (
-                  <Link
-                    style={{ textDecoration: "none", color: "black" }}
-                    to={`/gita/1/1`}
+                  <MenuItem
+                    value={`${verse.chapter}`}
+                    component={Link}
+                    to={`/gita/${verse.chapter}/${shloka}`}
                   >
-                    <MenuItem value={`${verse.chapter_number}`}>
-                      {verse.chapter_number}
-                    </MenuItem>
-                  </Link>
+                    {verse.chapter}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -89,20 +98,20 @@ const Home = () => {
                 default
               >
                 {data.map((verse) => (
-                  <Link to={`/gita/1/${verse.verse_number}`}>
-                    <MenuItem value={`${verse.verse_number}`}>
-                      {verse.verse_number}
-                    </MenuItem>
-                  </Link>
+                  <MenuItem
+                    value={verse.shloka}
+                    component={Link}
+                    to={`/gita/${chapter}/${verse.shloka}`}
+                  >
+                    {verse.shloka}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
           </div>
         </div>
       </div>
-      <MainContent data={data} />
-
-      {/* <Paginations count={data.length} /> */}
+      <MainContent key={data.id} data={data} />
     </div>
   );
 };
