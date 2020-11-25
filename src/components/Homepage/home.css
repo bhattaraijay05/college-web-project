@@ -4,7 +4,12 @@
   flex-direction: column;
   border: 1px solid #000000;
 }
-
+.home__title__text {
+  font-size: 40px;
+  text-transform: uppercase;
+  display: inline;
+  color: blue;
+}
 .content__title > h2 {
   color: blue;
 }

@@ -1,3 +1,4 @@
+import { BookTwoTone } from "@material-ui/icons";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
@@ -16,6 +17,7 @@ const NoMatchPage = () => {
 };
 
 function App() {
+  const book = "srimadhwavijaya";
   return (
     <div className="mainbody">
       <NavBar />
@@ -23,8 +25,8 @@ function App() {
         <Route path="/" component={Main} exact />
         <Route path="/add" component={AddToFirestore} exact />
         <Route path="/login" component={LoginPage} exact />
-        <Route path="/gita/:chapters/:shloka" component={Home} exact />
-        <Route path="/gita/:chapters" component={Home} exact />
+        <Route path={`/:book/:chapters/:shloka`} component={Home} exact />
+        <Route path={`/:book/:chapters`} component={Home} exact />
         <Route path="/signin" component={SignupPage} exact />
         <Route component={NoMatchPage} />
       </Switch>

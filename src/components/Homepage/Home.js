@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const book = "srimadhwavijaya";
   const classes = useStyles();
   const [chapter, setChapter] = useState(1);
   const [shloka, setShloka] = useState(1);
@@ -37,7 +38,7 @@ const Home = () => {
 
   useEffect(() => {
     db.collection("books")
-      .orderBy("chapter", "asc")
+      .orderBy("shloka", "asc")
       .onSnapshot((snapshot) => {
         setData(
           snapshot.docs.map((doc) => ({
@@ -50,21 +51,20 @@ const Home = () => {
         );
       });
   }, []);
-  var rows = [];
-  for (var i = 1; i < 10; i++) {
-    rows.push(i);
-  }
   return (
     <div className="home">
       <div className="home__title">
-        <p>श्रीमद् भगवद्गीता</p>
+        <p className="home__title__text">{book}</p>
       </div>
       <div className="home__navigation">
         <div className="home__navigation__script"></div>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div className="home__navigation__chapter">
             <FormControl className={classes.formControl}>
-              <InputLabel id="demo-simple-select-helper-label">
+              <InputLabel
+                id="demo-simple-select-helper-label"
+                style={{ color: "blue" }}
+              >
                 Chapter
               </InputLabel>
               <Select
@@ -73,21 +73,28 @@ const Home = () => {
                 value={chapter}
                 onChange={changeChapter}
               >
-                {data.map((verse) => (
-                  <MenuItem
-                    value={verse.chapter}
-                    component={Link}
-                    to={`/gita/${verse.chapter}/1`}
-                  >
-                    {verse.chapter}
-                  </MenuItem>
-                ))}
+                {data.map((verse) => {
+                  if (verse.chapter) {
+                    return (
+                      <MenuItem
+                        value={verse.chapter}
+                        component={Link}
+                        to={`/${book}/${verse.chapter}/1`}
+                      >
+                        {verse.chapter}
+                      </MenuItem>
+                    );
+                  }
+                })}
               </Select>
             </FormControl>
           </div>
           <div className="home__navigation__shloka">
             <FormControl className={classes.formControl}>
-              <InputLabel id="demo-simple-select-helper-label">
+              <InputLabel
+                id="demo-simple-select-helper-label"
+                style={{ color: "blue" }}
+              >
                 Sloakas
               </InputLabel>
               <Select
@@ -97,21 +104,19 @@ const Home = () => {
                 onChange={changeShloka}
                 default
               >
-                {data
-                  .map((verse) => {
-                    if (verse.chapter == chapter) {
-                      return (
-                        <MenuItem
-                          value={verse.shloka}
-                          component={Link}
-                          to={`/gita/${chapter}/${verse.shloka}`}
-                        >
-                          {verse.shloka}
-                        </MenuItem>
-                      );
-                    }
-                  })
-                  .reverse()}
+                {data.map((verse) => {
+                  if (verse.chapter == chapter) {
+                    return (
+                      <MenuItem
+                        value={verse.shloka}
+                        component={Link}
+                        to={`/${book}/${chapter}/${verse.shloka}`}
+                      >
+                        {verse.shloka}
+                      </MenuItem>
+                    );
+                  }
+                })}
               </Select>
             </FormControl>
           </div>
