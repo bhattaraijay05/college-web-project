@@ -75,9 +75,9 @@ const Home = () => {
               >
                 {data.map((verse) => (
                   <MenuItem
-                    value={`${verse.chapter}`}
+                    value={verse.chapter}
                     component={Link}
-                    to={`/gita/${verse.chapter}/${shloka}`}
+                    to={`/gita/${verse.chapter}/1`}
                   >
                     {verse.chapter}
                   </MenuItem>
@@ -97,15 +97,21 @@ const Home = () => {
                 onChange={changeShloka}
                 default
               >
-                {data.map((verse) => (
-                  <MenuItem
-                    value={verse.shloka}
-                    component={Link}
-                    to={`/gita/${chapter}/${verse.shloka}`}
-                  >
-                    {verse.shloka}
-                  </MenuItem>
-                ))}
+                {data
+                  .map((verse) => (
+                    <div>
+                      {verse.chapter == chapter && (
+                        <MenuItem
+                          value={verse.shloka}
+                          component={Link}
+                          to={`/gita/${chapter}/${verse.shloka}`}
+                        >
+                          {verse.shloka}
+                        </MenuItem>
+                      )}
+                    </div>
+                  ))
+                  .reverse()}
               </Select>
             </FormControl>
           </div>
