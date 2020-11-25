@@ -98,9 +98,9 @@ const Home = () => {
                 default
               >
                 {data
-                  .map((verse) => (
-                    <div>
-                      {verse.chapter == chapter && (
+                  .map((verse) => {
+                    if (verse.chapter == chapter) {
+                      return (
                         <MenuItem
                           value={verse.shloka}
                           component={Link}
@@ -108,9 +108,9 @@ const Home = () => {
                         >
                           {verse.shloka}
                         </MenuItem>
-                      )}
-                    </div>
-                  ))
+                      );
+                    }
+                  })
                   .reverse()}
               </Select>
             </FormControl>
