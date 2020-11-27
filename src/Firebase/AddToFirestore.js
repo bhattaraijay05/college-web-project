@@ -31,7 +31,7 @@ const AddToFirestore = () => {
             className="form-control"
             onChange={(event) => setChapter(event.target.value)}
             style={{ textAlign: "center", fontSize: 20 }}
-            placeholder="Chapter No:"
+            placeholder="Chapter Number"
           />
           <input
             type="text"
@@ -39,7 +39,7 @@ const AddToFirestore = () => {
             className="form-control"
             onChange={(event) => setShloka(event.target.value)}
             style={{ textAlign: " center", fontSize: 20 }}
-            placeholder="Shloka No:"
+            placeholder="Shloka Number"
           />
           <input
             type="text"
@@ -57,14 +57,22 @@ const AddToFirestore = () => {
             style={{ textAlign: " center", fontSize: 20 }}
             placeholder="Meaning"
           />
-          <button
-            disabled={(!chapter, !shloka, !text)}
-            className="btn btn-primary"
-            onClick={addItems}
-            type="submit"
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: 20,
+            }}
           >
-            POST
-          </button>
+            <button
+              disabled={(!chapter, !shloka, !text)}
+              className="btn btn-primary"
+              onClick={addItems}
+              type="submit"
+            >
+              POST
+            </button>
+          </div>
         </form>
       </div>
     </div>

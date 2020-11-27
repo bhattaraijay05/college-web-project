@@ -13,7 +13,7 @@ const MainContent = ({ data }) => {
       setTranslate("Done");
     } else {
       setShowTranslate("none");
-      setTranslate("Transliterate");
+      setTranslate("Meaning");
     }
   };
   return (
