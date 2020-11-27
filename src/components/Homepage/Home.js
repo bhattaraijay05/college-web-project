@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import MainContent from "./MainContent";
 import "./home.css";
 import { db } from "../../Firebase/Firebase";
-
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -28,12 +27,17 @@ const Home = () => {
   const [chapter, setChapter] = useState(1);
   const [shloka, setShloka] = useState(1);
 
+  const [Language, setLanguage] = useState("devanagari");
   const changeChapter = (event) => {
     setChapter(event.target.value);
   };
 
   const changeShloka = (event) => {
     setShloka(event.target.value);
+  };
+
+  const changeLanguage = (event) => {
+    setLanguage(event.target.value);
   };
 
   useEffect(() => {
@@ -69,6 +73,17 @@ const Home = () => {
     "14",
     "15",
     "16",
+  ];
+  const languages = [
+    "malayalam",
+    "kannada",
+    "telugu",
+    "bengali",
+    "devanagari",
+    "oriya",
+    "tamil",
+    "gurmukhi",
+    "gujarati",
   ];
 
   return (
@@ -136,9 +151,30 @@ const Home = () => {
               </Select>
             </FormControl>
           </div>
+          <div className="home__navigation__shloka">
+            <FormControl className={classes.formControl}>
+              <InputLabel
+                id="demo-simple-select-helper-label"
+                style={{ color: "blue" }}
+              >
+                Language
+              </InputLabel>
+
+              <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                value={Language}
+                onChange={changeLanguage}
+              >
+                {languages.map((lang) => (
+                  <MenuItem value={lang}>{lang}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
         </div>
       </div>
-      <MainContent key={data.id} data={data} />
+      <MainContent key={data.id} data={data} Language={Language} />
     </div>
   );
 };

@@ -9989,6 +9989,11 @@ sanitize.css@^10.0.0:
   resolved "https://registry.yarnpkg.com/sanitize.css/-/sanitize.css-10.0.0.tgz#b5cb2547e96d8629a60947544665243b1dc3657a"
   integrity sha512-vTxrZz4dX5W86M6oVWVdOVe72ZiPs41Oi7Z6Km4W5Turyz28mrXSJhhEBZoRtzJWIv3833WKVwLSDWWkEfupMg==
 
+sanscript@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/sanscript/-/sanscript-0.0.2.tgz#5d0384e63475c61986da385fbccce3a15ec3b3e6"
+  integrity sha1-XQOE5jR1xhmG2jhfvMzjoV7Ds+Y=
+
 sass-loader@8.0.2:
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-8.0.2.tgz#debecd8c3ce243c76454f2e8290482150380090d"
