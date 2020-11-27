@@ -37,7 +37,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    db.collection("books")
+    db.collection("srimadhwavijaya")
       .orderBy("shloka", "asc")
       .onSnapshot((snapshot) => {
         setData(
@@ -46,7 +46,7 @@ const Home = () => {
             chapter: doc.data().chapter,
             shloka: doc.data().shloka,
             text: doc.data().text,
-            translate: doc.data().translate,
+            meaning: doc.data().meaning,
           }))
         );
       });

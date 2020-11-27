@@ -5,15 +5,15 @@ import Button from "@material-ui/core/Button";
 const MainContent = ({ data }) => {
   const { shloka } = useParams();
   const { chapters } = useParams();
-  const [showTranslate, setShowTranslate] = useState("none");
-  const [translate, setTranslate] = useState("Meaning");
+  const [showmeaning, setShowmeaning] = useState("none");
+  const [meaning, setmeaning] = useState("Meaning");
   const changeText = () => {
-    if (showTranslate === "none") {
-      setShowTranslate("flex");
-      setTranslate("Done");
+    if (showmeaning === "none") {
+      setShowmeaning("flex");
+      setmeaning("Done");
     } else {
-      setShowTranslate("none");
-      setTranslate("Meaning");
+      setShowmeaning("none");
+      setmeaning("Meaning");
     }
   };
   return (
@@ -34,7 +34,7 @@ const MainContent = ({ data }) => {
             })}
           </p>
           <Button variant="contained" color="primary" onClick={changeText}>
-            {translate}
+            {meaning}
           </Button>
         </div>
       </div>
@@ -42,7 +42,7 @@ const MainContent = ({ data }) => {
       <div
         className="home__content__box"
         style={{
-          display: `${showTranslate}`,
+          display: `${showmeaning}`,
         }}
       >
         <div className="content__content">
@@ -52,7 +52,7 @@ const MainContent = ({ data }) => {
                 card.shloka === parseInt(shloka) &&
                 card.chapter === parseInt(chapters)
               ) {
-                return <p>{card.translate}</p>;
+                return <p>{card.meaning}</p>;
               }
             })}
           </p>

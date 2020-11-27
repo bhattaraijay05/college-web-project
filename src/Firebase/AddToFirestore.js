@@ -5,20 +5,20 @@ const AddToFirestore = () => {
   const [chapter, setChapter] = useState();
   const [shloka, setShloka] = useState();
   const [text, setText] = useState("");
-  const [translate, setTranslate] = useState("");
+  const [meaning, setmeaning] = useState("");
   const addItems = (event) => {
     //this will happen after clicking the button
     event.preventDefault();
-    db.collection("books").add({
+    db.collection("srimadhwavijaya").add({
       chapter: Number(chapter),
       shloka: Number(shloka),
       text: text,
-      translate: translate,
+      meaning: meaning,
     });
     setChapter("");
     setShloka("");
     setText("");
-    setTranslate("");
+    setmeaning("");
   };
 
   return (
@@ -51,9 +51,9 @@ const AddToFirestore = () => {
           />
           <input
             type="text"
-            value={translate}
+            value={meaning}
             className="form-control"
-            onChange={(event) => setTranslate(event.target.value)}
+            onChange={(event) => setmeaning(event.target.value)}
             style={{ textAlign: " center", fontSize: 20 }}
             placeholder="Meaning"
           />
