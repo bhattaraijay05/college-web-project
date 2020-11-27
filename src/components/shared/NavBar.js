@@ -20,13 +20,13 @@ const NavBar = () => {
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <Link class="nav-link" to="#" style={{ color: "white" }}>
+            <Link class="nav-link" to="/" style={{ color: "white" }}>
               Home
             </Link>
-            <Link class="nav-link" to="#" style={{ color: "white" }}>
+            <Link class="nav-link" to="/about" style={{ color: "white" }}>
               About Page
             </Link>
-            <Link class="nav-link" to="#" style={{ color: "white" }}>
+            <Link class="nav-link" to="/our-team" style={{ color: "white" }}>
               Our Team
             </Link>
           </div>
