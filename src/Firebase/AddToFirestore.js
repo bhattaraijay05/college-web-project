@@ -31,7 +31,7 @@ const AddToFirestore = () => {
             className="form-control"
             onChange={(event) => setChapter(event.target.value)}
             style={{ textAlign: "center", fontSize: 20 }}
-            placeholder="Chapter"
+            placeholder="Chapter No:"
           />
           <input
             type="text"
@@ -39,7 +39,7 @@ const AddToFirestore = () => {
             className="form-control"
             onChange={(event) => setShloka(event.target.value)}
             style={{ textAlign: " center", fontSize: 20 }}
-            placeholder="Shloka"
+            placeholder="Shloka No:"
           />
           <input
             type="text"
@@ -47,7 +47,7 @@ const AddToFirestore = () => {
             className="form-control"
             onChange={(event) => setText(event.target.value)}
             style={{ textAlign: " center", fontSize: 20 }}
-            placeholder="Text"
+            placeholder="Shloka"
           />
           <input
             type="text"
@@ -55,7 +55,7 @@ const AddToFirestore = () => {
             className="form-control"
             onChange={(event) => setTranslate(event.target.value)}
             style={{ textAlign: " center", fontSize: 20 }}
-            placeholder="Translated Text"
+            placeholder="Meaning"
           />
           <button
             disabled={(!chapter, !shloka, !text)}

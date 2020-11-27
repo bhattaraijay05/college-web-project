@@ -6,7 +6,7 @@ const MainContent = ({ data }) => {
   const { shloka } = useParams();
   const { chapters } = useParams();
   const [showTranslate, setShowTranslate] = useState("none");
-  const [translate, setTranslate] = useState("Transliterate");
+  const [translate, setTranslate] = useState("Meaning");
   const changeText = () => {
     if (showTranslate === "none") {
       setShowTranslate("flex");
