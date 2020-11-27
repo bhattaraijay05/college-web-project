@@ -51,6 +51,26 @@ const Home = () => {
         );
       });
   }, []);
+
+  const totalChapter = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+  ];
+
   return (
     <div className="home">
       <div className="home__title">
@@ -73,19 +93,15 @@ const Home = () => {
                 value={chapter}
                 onChange={changeChapter}
               >
-                {data.map((verse) => {
-                  if (verse.chapter) {
-                    return (
-                      <MenuItem
-                        value={verse.chapter}
-                        component={Link}
-                        to={`/${book}/${verse.chapter}/1`}
-                      >
-                        {verse.chapter}
-                      </MenuItem>
-                    );
-                  }
-                })}
+                {totalChapter.map((chap) => (
+                  <MenuItem
+                    value={chap}
+                    component={Link}
+                    to={`/${book}/${chap}/1`}
+                  >
+                    {chap}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </div>
