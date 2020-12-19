@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { auth } from "../../Firebase/Firebase";
 
 const NavBar = () => {
-  console.log(auth.currentUser);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary ">
       <Link className="navbar-brand" to="/">
@@ -34,7 +33,7 @@ const NavBar = () => {
           </Link>
         </div>
         <div class=" my-2 my-lg-0">
-          {auth.currentUser ? (
+          {auth.currentUser?.displayName ? (
             <div style={{ display: "flex", flexDirection: "row" }}>
               <h4 style={{ color: "#fff", marginRight: 70 }}>
                 Hi {auth.currentUser.displayName}

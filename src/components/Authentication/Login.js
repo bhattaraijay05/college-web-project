@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { auth } from "../../Firebase/Firebase";
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -39,6 +40,7 @@ export default function Login() {
   const [showSpinner, setShowSpinner] = useState("none");
   const classes = useStyles();
 
+  let history = useHistory();
   const signIn = (e) => {
     e.preventDefault();
     setShowSpinner("inline");
@@ -46,6 +48,7 @@ export default function Login() {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
     setShowSpinner("none");
+    history.push("/");
   };
 
   return (
