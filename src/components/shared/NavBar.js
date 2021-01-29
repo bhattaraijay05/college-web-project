@@ -1,9 +1,31 @@
-import { Button } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../../Firebase/Firebase";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const NavBar = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const logUserOut = () => {
+    setOpen(false);
+    auth.signOut();
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary ">
       <Link className="navbar-brand" to="/">
@@ -28,19 +50,47 @@ const NavBar = () => {
           <Link className="nav-link" to="/about" style={{ color: "white" }}>
             About Page
           </Link>
-          <Link className="nav-link" to="/our-team" style={{ color: "white" }}>
+          {/* <Link className="nav-link" to="/our-team" style={{ color: "white" }}>
             Our Team
-          </Link>
+          </Link> */}
         </div>
         <div class=" my-2 my-lg-0">
           {auth.currentUser?.displayName ? (
             <div style={{ display: "flex", flexDirection: "row" }}>
-              <h4 style={{ color: "#fff", marginRight: 70 }}>
+              <h4 style={{ color: "#fff", marginRight: 50, marginTop: "auto" }}>
                 Hi {auth.currentUser.displayName}
               </h4>
-              <Button onClick={() => auth.signOut()} style={{ color: "red" }}>
-                Logout
-              </Button>
+              <div>
+                <Button
+                  color="primary"
+                  style={{ color: "red", fontWeight: "bold", fontSize: 18 }}
+                  onClick={handleClickOpen}
+                >
+                  Logout
+                </Button>
+                <Dialog
+                  open={open}
+                  TransitionComponent={Transition}
+                  keepMounted
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-slide-title"
+                  aria-describedby="alert-dialog-slide-description"
+                >
+                  <DialogTitle id="alert-dialog-slide-title">
+                    {"Do you really want to log out?"}
+                  </DialogTitle>
+                  <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                      No
+                    </Button>
+                    <a href="/" style={{ textDecoration: "none" }}>
+                      <Button onClick={logUserOut} color="primary">
+                        Yes
+                      </Button>
+                    </a>
+                  </DialogActions>
+                </Dialog>
+              </div>
             </div>
           ) : (
             <Link className="nav-link " to="/login" style={{ color: "white" }}>

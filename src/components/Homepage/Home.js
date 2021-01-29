@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
+import { useParams } from "react-router-dom";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
@@ -22,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const book = "srimadhwavijaya";
+  const { book } = useParams();
+
   const classes = useStyles();
   const [chapter, setChapter] = useState(1);
   const [shloka, setShloka] = useState(1);
@@ -41,7 +43,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    db.collection("srimadhwavijaya")
+    db.collection(`${book}`)
       .orderBy("shloka", "asc")
       .onSnapshot((snapshot) => {
         setData(
@@ -54,7 +56,7 @@ const Home = () => {
           }))
         );
       });
-  }, []);
+  }, [book]);
 
   const totalChapter = [
     "1",
@@ -136,7 +138,7 @@ const Home = () => {
                 default
               >
                 {data.map((verse) => {
-                  if (verse.chapter == chapter) {
+                  if (verse.chapter === chapter) {
                     return (
                       <MenuItem
                         value={verse.shloka}

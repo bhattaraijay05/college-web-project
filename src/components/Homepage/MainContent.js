@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import Sanscript from "sanscript";
+import "./home.css";
 
 const MainContent = ({ data, Language }) => {
   const { shloka } = useParams();
   const { chapters } = useParams();
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-      }}
-    >
+    <div className="mainContent">
       <div style={{ flex: 0.5 }}>
         <div className="content__content">
           <div className="content__title">

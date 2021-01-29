@@ -7,7 +7,6 @@ const AddToFirestore = () => {
   const [text, setText] = useState("");
   const [meaning, setmeaning] = useState("");
   const addItems = (event) => {
-    //this will happen after clicking the button
     event.preventDefault();
     db.collection("srimadhwavijaya").add({
       chapter: Number(chapter),
