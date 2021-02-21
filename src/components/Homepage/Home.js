@@ -176,7 +176,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <MainContent key={data.id} data={data} Language={Language} />
+      <MainContent key={data.id} data={data} Language={Language} book={book} />
     </div>
   );
 };

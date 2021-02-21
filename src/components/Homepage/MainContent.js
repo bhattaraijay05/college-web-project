@@ -1,9 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Sanscript from "sanscript";
 import "./home.css";
 
-const MainContent = ({ data, Language }) => {
+const MainContent = ({ data, Language, book }) => {
   const { shloka } = useParams();
   const { chapters } = useParams();
   return (
@@ -37,7 +37,17 @@ const MainContent = ({ data, Language }) => {
                 card.shloka === parseInt(shloka) &&
                 card.chapter === parseInt(chapters)
               ) {
-                return <p>{card.meaning}</p>;
+                return (
+                  <>
+                    <p>{card.meaning}</p>
+
+                    <Link to={`/edit/${book}/${card.id}`}>
+                      <button className="btn btn-primary" type="submit">
+                        Edit
+                      </button>
+                    </Link>
+                  </>
+                );
               }
             })}
           </p>
