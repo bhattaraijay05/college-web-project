@@ -34,6 +34,9 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" component={Main} exact />
+
+        <Route path="/add" component={AddToFirestore} exact />
+        <Route path="/edit/:book/:id" component={EditData} exact />
         <Route path="/about" component={About} exact />
         <Route path="/our-team" component={TeamPage} exact />
         <Route path={`/:book/:chapters/:shloka`} component={Home} exact />
@@ -41,9 +44,6 @@ function App() {
         <Route path="/login" component={!user ? Login : Main} exact />
         <Route path="/signup" component={!user ? Signup : Main} exact />
         <Route component={NoMatchPage} />
-
-        <Route path="/add" component={AddToFirestore} exact />
-        <Route path="/edit/:book/:id" component={EditData} exact />
       </Switch>
       <Footer />
     </div>
