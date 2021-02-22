@@ -35,8 +35,12 @@ const Main = () => {
             <p className="card-text">{book.title}</p>
 
             <Link to={`/${book.name}/1/1`}>
-              <Button variant="contained" color="primary">
-                Srimadhwavijaya
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ textTransform: "uppercase" }}
+              >
+                {book.name}
               </Button>
             </Link>
           </div>

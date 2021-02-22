@@ -35,14 +35,23 @@ function App() {
       <Switch>
         <Route path="/" component={Main} exact />
 
-        <Route path="/add" component={AddToFirestore} exact />
-        <Route path="/edit/:book/:id" component={EditData} exact />
+        <Route
+          path="/add"
+          component={!user ? NoMatchPage : AddToFirestore}
+          exact
+        />
+        <Route
+          path="/edit/:book/:id"
+          component={!user ? NoMatchPage : EditData}
+          exact
+        />
         <Route path="/about" component={About} exact />
         <Route path="/our-team" component={TeamPage} exact />
         <Route path={`/:book/:chapters/:shloka`} component={Home} exact />
         <Route path={`/:book/:chapters`} component={Home} exact />
         <Route path="/login" component={!user ? Login : Main} exact />
         <Route path="/signup" component={!user ? Signup : Main} exact />
+
         <Route component={NoMatchPage} />
       </Switch>
       <Footer />

@@ -13,7 +13,7 @@ const EditData = () => {
 
   const addItems = (event) => {
     event.preventDefault();
-    db.collection(`srimadhwavijaya`)
+    db.collection(book)
       .doc(id)
       .update({
         chapter: Number(chapter),
