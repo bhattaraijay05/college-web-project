@@ -50,6 +50,14 @@ const NavBar = () => {
           <Link className="nav-link" to="/about" style={{ color: "white" }}>
             About Page
           </Link>
+
+          {auth.currentUser ? (
+            <Link className="nav-link" to="/add" style={{ color: "white" }}>
+              Add Data
+            </Link>
+          ) : (
+            <></>
+          )}
           {/* <Link className="nav-link" to="/our-team" style={{ color: "white" }}>
             Our Team
           </Link> */}
@@ -93,9 +101,15 @@ const NavBar = () => {
               </div>
             </div>
           ) : (
-            <Link className="nav-link " to="/login" style={{ color: "white" }}>
-              Login/Signup
-            </Link>
+            <>
+              <Link
+                className="nav-link "
+                to="/login"
+                style={{ color: "white" }}
+              >
+                Login/Signup
+              </Link>
+            </>
           )}
         </div>
       </div>

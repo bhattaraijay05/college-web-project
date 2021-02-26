@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import Sanscript from "sanscript";
 import "./home.css";
+import { auth } from "../../Firebase/Firebase";
 
 const MainContent = ({ data, Language, book }) => {
   const { shloka } = useParams();
@@ -40,12 +41,15 @@ const MainContent = ({ data, Language, book }) => {
                 return (
                   <>
                     <p>{card.meaning}</p>
-
-                    <Link to={`/edit/${book}/${card.id}`}>
-                      <button className="btn btn-primary" type="submit">
-                        Edit
-                      </button>
-                    </Link>
+                    {auth.currentUser ? (
+                      <Link to={`/edit/${book}/${card.id}`}>
+                        <button className="btn btn-primary" type="submit">
+                          Edit
+                        </button>
+                      </Link>
+                    ) : (
+                      <></>
+                    )}
                   </>
                 );
               }
